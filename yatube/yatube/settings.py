@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 from pathlib import Path
 
 load_dotenv()
-env_path = Path('.')/'.env'
+env_path = Path('D/Dev/hw02_community/yatube')/'.env'
 load_dotenv(dotenv_path=env_path)
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
