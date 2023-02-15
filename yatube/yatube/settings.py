@@ -1,8 +1,11 @@
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = 'g)hy(1gy5xk)nwi%-0slrdh8!e4sf7($gj9o(#=#h9t@wvs=ug'
+SECRET_KEY = my_super_secret_key
 
 DEBUG = True
 
