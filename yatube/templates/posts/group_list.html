@@ -3,11 +3,10 @@
   Записи сообщества {{ group.title }}
 {% endblock %}
 {% block content %}
-<main>
   <div class="container py-5">
     <h1>{{ group.title }}</h1>
     <p>
-      Группа тайных поклонников графа.
+      {{ group.description }}
     </p>
       {% for post in posts %}
         <article>
@@ -24,5 +23,4 @@
       {% if not forloop.last %}<hr>{% endif %}
       {% endfor %} 
   </div>
-</main>
 {% endblock %}
