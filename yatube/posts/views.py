@@ -1,3 +1,5 @@
+from django.core.paginator import Paginator
+
 from django.shortcuts import get_object_or_404, render
 
 from .models import Group, Post
@@ -6,11 +8,14 @@ POSTS_PER_PAGE = 10
 
 
 def index(request):
-    posts = Post.objects.order_by('-pub_date')[:POSTS_PER_PAGE]
+    post_list = Post.objects.all().order_by('-pub_date')
+    paginator = Paginator(post_list, POSTS_PER_PAGE) 
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     context = {
-        'posts': posts,
+        'page_obj': page_obj,
     }
-    return render(request, 'posts/index.html', context)
+    return render(request, 'posts/index.html', context) 
 
 
 def group_posts(request, slug):

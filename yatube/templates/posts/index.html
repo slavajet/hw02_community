@@ -5,7 +5,7 @@
 {% block content %}
   <div class="container py-5">
     <h1>Последние обновления на сайте.</h1>
-      {% for post in posts %}
+      {% for post in page_obj %}
       <article>
         <ul>
           <li>
@@ -22,5 +22,7 @@
           {% endif %} 
         {% if not forloop.last %}<hr>{% endif %}
       {% endfor %}
+      {% include 'posts/includes/paginator.html' %}
   </div>
 {% endblock %}
+
