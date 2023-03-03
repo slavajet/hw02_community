@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     'posts.apps.PostsConfig',
     'users.apps.UsersConfig',
     'core.apps.CoreConfig',
+    'about.apps.AboutConfig',
 ]
 
 MIDDLEWARE = [
@@ -49,7 +50,7 @@ TEMPLATES = [
             ],
         },
     },
-] 
+]
 
 WSGI_APPLICATION = 'yatube.wsgi.application'
 
@@ -101,4 +102,4 @@ LOGIN_REDIRECT_URL = 'posts:index'
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 
-EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails') 
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
