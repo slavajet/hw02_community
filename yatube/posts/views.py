@@ -1,8 +1,12 @@
 from django.core.paginator import Paginator
 
-from django.shortcuts import get_object_or_404, render
+from django.contrib.auth.decorators import login_required
+
+from django.shortcuts import get_object_or_404, render, redirect
 
 from .models import Group, Post, User
+
+from .forms import PostForm
 
 
 POSTS_PER_PAGE = 10
@@ -53,3 +57,18 @@ def post_detail(request, post_id):
         'full_post': full_post,
     }
     return render(request, 'posts/post_detail.html', context)
+
+
+@login_required
+def post_create(request):
+    template = 'posts/create_post.html'
+    form = PostForm(request.POST or None,)
+    if form.is_valid():
+        post = form.save(commit=False)
+        post.author = request.user
+        post.save()
+        return redirect('posts:profile', request.user)
+    context = {
+        'form': form,
+        'is_edit': False}
+    return render(request, template, context)
