@@ -9,14 +9,14 @@
       <li class="list-group-item">
         Дата публикации: {{ full_post.pub_date|date:"d E Y" }}
       </li>
-      {% if full_post.group %}    
-      <li class="list-group-item">
-        Группа: {{ full_post.group.title }}
+      {% if post.group %}    
+        <li class="list-group-item">
+          Группа: {{ post.group }}
+          <br>
+          <a href="{% url 'posts:group_list' post.group.slug %}">
+            все записи группы</a>
+        </li>
       {% endif %}
-        <a href="{% url 'posts:group_list' full_post.group.slug %}">
-          все записи группы
-        </a>
-      </li>
       <li class="list-group-item">
         Автор: {{ full_post.author.get_full_name }}
       </li>
@@ -34,6 +34,11 @@
     <p>
       {{ full_post.text }}
     </p>
+    {% if full_post.author == request.user %}
+      <a class="btn btn-primary" href="{% url 'posts:post_edit' full_post.id %}">
+        редактировать запись
+      </a>
+    {% endif %}
   </article>
 </div>
 {% endblock %}
